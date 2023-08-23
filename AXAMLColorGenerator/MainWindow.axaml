@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cp="clr-namespace:ThemeEditor.Controls.ColorPicker;assembly=ThemeEditor.Controls.ColorPicker"
+        xmlns:vm="clr-namespace:AXAMLColorGenerator.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+        Width="600" Height="400"
+        x:Class="AXAMLColorGenerator.MainWindow"
+        x:DataType="vm:MainWindowViewModel" 
+        Title="XAML Color Generator"
+        CanResize="False">
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="400, Auto" ColumnDefinitions="350, 300" Margin="5">
+                <cp:ColorPicker Grid.Row="0" Grid.Column="0" 
+                                x:Name="MyColorPicker" Color="{Binding   SelectedColor}"  
+                                Margin="5"/>
+                
+                <StackPanel Grid.Row="0" Grid.Column="1" Spacing="5" VerticalAlignment="Center" Margin="15">
+                        
+                        <Label Content="1. Choose a color" FontFamily="Verdana" FontSize="13"/>
+                        <Label Content="2. Nr of shades?" FontFamily="Verdana" FontSize="13"/>
+                        <TextBox Text="{Binding NumberOfShades}" FontSize="13"
+                                 HorizontalAlignment="Left" />
+                        
+                        <Label Content="3. Name of the color?" FontFamily="Verdana" FontSize="13"/>
+                        <TextBox Text="{Binding ColorName}"
+                                 HorizontalAlignment="Left" Width="200" FontSize="13"/>
+                        
+                        <Label Content="{Binding ColorName, StringFormat=4. Save to {0}.axaml}" 
+                               FontFamily="Verdana" FontSize="13"/>
+                        <Button Content="Save" FontFamily="Arial" Click="Button_OnClick" FontSize="13"/>
+                </StackPanel>
+        </Grid>
+</Window>
+
